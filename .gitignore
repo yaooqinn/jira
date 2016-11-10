@@ -21,3 +21,4 @@ settings.py
 test-quick
 tests/settings.py
 tests/test-reports-*/*
+**/*.log
