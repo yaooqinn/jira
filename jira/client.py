@@ -2345,6 +2345,7 @@ class JIRA:
         comment: (Optional[str]) = None,
         started: (Optional[datetime.datetime]) = None,
         user: (Optional[str]) = None,
+        visibility: (Optional[Dict[str, Any]]) = None,
     ) -> Worklog:
         """Add a new worklog entry on an issue and return a Resource for it.
 
@@ -2359,6 +2360,14 @@ class JIRA:
             comment (Optional[str]): optional worklog comment
             started (Optional[datetime.datetime]): Moment when the work is logged, if not specified will default to now
             user (Optional[str]): the user ID or name to use for this worklog
+            visibility (Optional[Dict[str,Any]]): the visibility argument
+                ```js
+                {
+                    "type": "group", # "group" or "role"
+                    "value": "<string>",
+                    "identifier": "<string>" # OPTIONAL
+                }
+                ```
         Returns:
             Worklog
         """
@@ -2381,6 +2390,8 @@ class JIRA:
             # we log user inside comment as it doesn't always work
             data["comment"] = user
 
+        if visibility is not None:
+            data["visibility"] = visibility
         if started is not None:
             # based on REST Browser it needs: "2014-06-03T08:21:01.273+0000"
             if started.tzinfo is None:
