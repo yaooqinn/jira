@@ -2360,14 +2360,13 @@ class JIRA:
             comment (Optional[str]): optional worklog comment
             started (Optional[datetime.datetime]): Moment when the work is logged, if not specified will default to now
             user (Optional[str]): the user ID or name to use for this worklog
-            visibility (Optional[Dict[str,Any]]): the visibility argument
-                ```js
+            visibility (Optional[Dict[str,Any]]): the visibility argument. ::
+
                 {
                     "type": "group", # "group" or "role"
                     "value": "<string>",
                     "identifier": "<string>" # OPTIONAL
                 }
-                ```
         Returns:
             Worklog
         """
